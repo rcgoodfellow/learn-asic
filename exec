@@ -1,0 +1,31 @@
+#!/bin/bash
+
+###############################################################################
+# A little script to run the vivado workflow for this project.
+#
+# Color output credit
+#    - https://bit.ly/vivid-vivado
+###############################################################################
+
+if [[ $# != 1 ]]; then
+    echo "usage: exec <file.tcl>"
+    exit 1
+fi
+
+file=$1
+
+vivado -mode batch -source $file |& sed \
+    -Ee "s/(^INFO:)/$(echo -e '\033[2m')\1$(echo -e '\033[0m')/" \
+    -Ee "s/(^WARNING:)/$(echo -e '\033[33m')\1$(echo -e '\033[0m')/" \
+    -Ee "s/(^ERROR:)/$(echo -e '\033[31m')\1$(echo -e '\033[0m')/"
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Vivado apparently does not do return codes. Leaving us to do some parsing to
+# figure out if there was an error.
+#    - https://bit.ly/vivano-no-return-codes
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+if grep -q "^ERROR:" vivado.log; then
+    exit 1
+else
+    exit 0
+fi

@@ -1,0 +1,10 @@
+# Compiled Output
+out
+
+# Vivado
+.Xil
+*.log
+*.jou
+
+# Vim
+*.sw*
