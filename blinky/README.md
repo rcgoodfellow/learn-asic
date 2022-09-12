@@ -15,6 +15,7 @@ Digilent Arty A7 100T.
 ## Workflow
 
 ```shell
+export MODULE=blinky
 ./exec compile.tcl
 ./exec run.tcl
 ```

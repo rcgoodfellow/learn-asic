@@ -23,10 +23,10 @@
 #       - timing_post_synth.rpt
 #       - util.rpt
 #   bitstream:
-#       - top.bit
+#       - $module.bit
 #   code:
-#       - top_impl_netlist.v
-#       - top_impl.xdc
+#       - $module_impl_netlist.v
+#       - $module_impl.xdc
 #   checkpoints:
 #       - post_place.dcp
 #       - post_route.dcp
@@ -36,7 +36,13 @@
 #   - https://bit.ly/xilinx-non-proj-tcl
 ###############################################################################
 
-set module top
+if { [info exists ::env(MODULE) ] } {
+    set module $::env(MODULE)
+} else {
+    puts "must set environment variable MODULE"
+    exit 1
+}
+
 set outputDir ./out
 file mkdir $outputDir
 

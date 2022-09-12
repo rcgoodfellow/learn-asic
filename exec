@@ -17,6 +17,7 @@ file=$1
 vivado -mode batch -source $file |& sed \
     -Ee "s/(^INFO:)/$(echo -e '\033[2m')\1$(echo -e '\033[0m')/" \
     -Ee "s/(^WARNING:)/$(echo -e '\033[33m')\1$(echo -e '\033[0m')/" \
+    -Ee "s/(^CRITICAL WARNING:)/$(echo -e '\033[1;4;33m')\1$(echo -e '\033[0m')/" \
     -Ee "s/(^ERROR:)/$(echo -e '\033[31m')\1$(echo -e '\033[0m')/"
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

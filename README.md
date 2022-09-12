@@ -17,11 +17,22 @@ simply provides colored output for warnings and errors and ensures a `1` exit
 code is returned if an error is encountered. The basic workflow looks like this.
 
 ```shell
+export MODULE=blinky
 # edit code ...
 ./exec compile.tcl
 ./exec run.tcl
 # repeat ...
 ```
+
+## Project Overview
+
+Projects are listed below in approximately increasing order of complexity.
+
+- [Blinky](blinky) - A very simple program mostly to demonstrate the workflow
+  and verify a development machine is set up properly.
+
+- [Morse](morse) - The first ASIC project. A simple ISA and processor for
+  executing [Morse code](https://en.wikipedia.org/wiki/Morse_code) programs.
 
 ## Vivado Setup
 

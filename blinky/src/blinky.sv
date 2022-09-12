@@ -2,7 +2,7 @@
 // this code is taken from
 //   - https://projectf.io/posts/hello-arty-1/
 //=============================================================================
-module top (
+module blinky (
     input wire logic [1:0] sw,
     output logic [3:0] led
 );
